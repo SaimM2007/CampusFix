@@ -460,29 +460,22 @@ http://127.0.0.1:8000/docs
 
 ### 5. Start the Frontend
 
-Navigate to the frontend project directory containing `package.json`.
-
-Install dependencies:
+In a second terminal, run these commands from the repository root:
 
 ```bash
-npm install
+cd frontend
+npm ci
 ```
 
-Start the development server:
+Create `frontend/.env.local` (or update the existing file) with this public API address:
 
-```bash
-npm run dev
+```dotenv
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
 ```
 
-Configure the frontend API base URL to point to the FastAPI backend.
+Start Next.js with `npm run dev` and open [http://localhost:3000](http://localhost:3000). The backend allows this exact browser origin. Restart Next.js after editing the environment file.
 
-For local development:
-
-```text
-http://127.0.0.1:8000
-```
-
-The exact frontend environment variable name and development URL depend on the frontend framework and its configuration.
+If the dashboard reports a connection error, open [API health](http://127.0.0.1:8000/api/health) first. Then check [the overview endpoint](http://127.0.0.1:8000/api/overview), which also requires a working Snowflake connection. Keep Snowflake, Browserbase and Gemini credentials in the backend environment.
 
 ### 6. Test the Application
 
