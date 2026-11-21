@@ -19,3 +19,4 @@ data/*.zip
 
 # Misc
 .DS_Store
+data/local/
