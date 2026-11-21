@@ -1,4 +1,4 @@
-import { AnomaliesResponse, Anomaly, Investigation, OverviewResponse } from "./types";
+import { AnomaliesResponse, Anomaly, Investigation, OverviewResponse, ResearchResponse } from "./types";
 
 export const API_BASE = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/$/, "");
 
@@ -25,4 +25,6 @@ export const api = {
   anomaly: (id: string) => request<Anomaly>(`/api/anomalies/${encodeURIComponent(id)}`),
   investigate: (id: string) =>
     request<Investigation>(`/api/anomalies/${encodeURIComponent(id)}/investigate`, { method: "POST" }),
+  research: (id: string) =>
+    request<ResearchResponse>(`/api/anomalies/${encodeURIComponent(id)}/research`, { method: "POST" }),
 };

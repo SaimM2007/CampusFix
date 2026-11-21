@@ -7,6 +7,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { AppHeader } from "@/components/app-header";
 import { MetricCard } from "@/components/metric-card";
 import { AnomaliesTable } from "@/components/anomalies-table";
+import { OverviewAnalytics } from "@/components/overview-analytics";
 import { api } from "@/lib/api";
 import { Anomaly, OverviewResponse } from "@/lib/types";
 import { percent } from "@/lib/format";
@@ -50,6 +51,7 @@ export default function Home() {
           <MetricCard label="Low severity" value={overview?.low_severity ?? "—"} detail="Triage threshold · not a diagnosis" />
           <MetricCard label="Average change" value={overview ? percent(overview.average_change_pct) : "—"} detail="Across returned anomaly events" />
         </div>
+        {overview && anomalies.length > 0 && <OverviewAnalytics overview={overview} anomalies={anomalies} />}
         <section className="panel">
           <div className="panel-heading">
             <div><p>{overview?.source === "snowflake" ? "Snowflake · purchased electricity" : "Historical data"}</p><h2>Latest anomaly events</h2></div>

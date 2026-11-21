@@ -5,7 +5,8 @@ export function number(value?: number) {
 
 export function percent(value?: number) {
   if (value === undefined || value === null) return "Not available";
-  return `${value > 0 ? "+" : ""}${value.toFixed(1)}%`;
+  const formatted = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value);
+  return `${value > 0 ? "+" : ""}${formatted}%`;
 }
 
 export function kwh(value?: number) {
