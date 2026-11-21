@@ -144,3 +144,27 @@ IMPORTANT:
         raise
     except Exception as exc:
         raise HTTPException(status_code=503, detail=str(exc))
+
+
+@router.post("/anomalies/{anomaly_id}/research")
+def research_anomaly(anomaly_id: str):
+    try:
+        from browserbase_agent import gather_evidence
+
+        anomaly = get_anomaly(anomaly_id)
+
+        evidence = gather_evidence(
+            anomaly["building"],
+            anomaly["campus"]
+        )
+
+        return {
+            "anomaly_id": anomaly_id,
+            "building": anomaly["building"],
+            "evidence": evidence
+        }
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
