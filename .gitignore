@@ -16,6 +16,7 @@ node_modules/
 data/*.csv
 data/*.xlsx
 data/*.zip
+data/local/
 
 # Misc
 .DS_Store
