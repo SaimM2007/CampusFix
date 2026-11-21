@@ -1,10 +1,15 @@
 import { Suspense } from "react";
-import AnomalyDetail from "@/components/anomaly-detail";
+import { redirect } from "next/navigation";
 
-export default function AnomalyDetailPage() {
+async function RedirectAnomaly({ params }: { params: Promise<{ id: string }> }): Promise<never> {
+  const { id } = await params;
+  redirect(`/investigations/${encodeURIComponent(id)}`);
+}
+
+export default function AnomalyDetailPage({ params }: { params: Promise<{ id: string }> }) {
   return (
-    <Suspense fallback={<div className="app-shell"><main className="main-content"><div className="empty-state">Loading anomaly…</div></main></div>}>
-      <AnomalyDetail />
+    <Suspense fallback={<div className="loading-state">Opening investigation…</div>}>
+      <RedirectAnomaly params={params} />
     </Suspense>
   );
 }

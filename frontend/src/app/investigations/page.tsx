@@ -10,9 +10,9 @@ export default function InvestigationsPage() {
         <AppHeader title="Investigations" eyebrow="Workflow" />
         <section className="panel">
           <div className="empty-investigation">
-            <p>Investigation queue</p>
-            <h2>No active investigation is available</h2>
-            <span>Open an anomaly to start a new review.</span>
+            <p>Selected anomaly report</p>
+            <h2>Choose an anomaly to investigate</h2>
+            <span>The investigation report opens after you select an anomaly from the review list.</span>
             <Link className="primary-button" href="/anomalies">Review anomalies</Link>
           </div>
         </section>
